@@ -45,7 +45,7 @@ def _validate_url(url: str) -> tuple[bool, str]:
 
 
 class WebSearchTool(Tool):
-    """Search the web using Brave Search API."""
+    """Search the web using Brave Search API or Baidu Search API."""
     
     name = "web_search"
     description = "Search the web. Returns titles, URLs, and snippets."
@@ -65,7 +65,6 @@ class WebSearchTool(Tool):
         else:
             from .search.brave import BraveSearchTool
             self._impl = BraveSearchTool(config)
-       
     
     async def execute(self, query: str, count: int | None = None, **kwargs: Any) -> str:
         return await self._impl.queryStringify(query, count, **kwargs)
